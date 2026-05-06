@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ROG - Graphics Cards</title>
+    <link rel="stylesheet" href="1.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: #2a002a;
+            color: rgb(176, 50, 50);
+            font-family: 'Roboto', sans-serif;
+            overflow-x: hidden;
+        }
+
+        #roman {
+            width: 100%;
+        }
+
+        .page {
+            min-height: 100vh;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            background: radial-gradient(circle at center, #8b008b 0%, #2a002a 100%);
+        }
+
+        .content-box {
+            text-align: center;
+            z-index: 2;
+            max-width: 1200px;
+            width: 90%;
+            position: relative;
+        }
+
+        .title-evolved {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(2rem, 5vw, 4.5rem);
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            margin: 0;
+            background: linear-gradient(135deg, #ff66ff, #cc00cc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 15px rgba(255, 0, 255, 0.6));
+        }
+
+        .subtitle {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            font-weight: 700;
+            margin: 10px 0 40px 0;
+            color: #ffccff;
+        }
+
+
+        .hero-text {
+            position: absolute; 
+            top: 35%; 
+            left: 5%; 
+            z-index: 2; 
+            text-align: left; 
+            pointer-events: none; 
+            width: 50%;
+        }
+        .hero-model {
+            width: 60%; 
+            height: 100%; 
+            position: absolute; 
+            top:0; 
+            right:-5%; 
+            z-index: 1;
+        }
+
+
+        .performance-container {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            width: 100%;
+            position: relative;
+            min-height: 500px;
+        }
+
+        .image-placeholder {
+            position: absolute;
+            left: -10%;
+            width: 60%;
+            height: 100%;
+        }
+
+        .specs-wrapper {
+            display: flex;
+            gap: 40px;
+            z-index: 2;
+            margin-right: 5%;
+        }
+
+        .spec-column {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 0, 255, 0.3);
+            min-width: 200px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .spec-column .label {
+            display: block;
+            font-size: 1rem;
+            color: #ffb3ff;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .spec-column .value {
+            display: block;
+            font-size: 2rem;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: bold;
+            margin-top: 10px;
+            color: white;
+            text-shadow: 0 0 10px rgba(255,0,255,0.8);
+        }
+
+
+        .features-layout {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            gap: 20px;
+        }
+
+        .feature-model {
+            width: 45%;
+            height: 400px;
+        }
+
+        .feature-list {
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            text-align: left;
+        }
+
+        .feature-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 4px solid #ff00ff;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .feature-item .feature-name {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #ff66ff;
+            margin-bottom: 5px;
+        }
+
+        .feature-item .feature-desc {
+            font-size: 1rem;
+            color: #ddd;
+        }
+
+
+        .shopping-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .shop-box {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 0, 255, 0.3);
+            border-radius: 8px;
+            padding: 15px 25px;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            flex: 1 1 calc(25% - 15px);
+            min-width: 140px;
+            text-align: center;
+        }
+
+        .shop-box:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 0, 255, 0.2);
+            box-shadow: 0 5px 15px rgba(255, 0, 255, 0.4);
+            border-color: #ff00ff;
+        }
+
+        .footer-links a:hover {
+            color: #fff !important;
+            text-shadow: 0 0 10px rgba(255,255,255,0.8);
+        }
+
+        .social-links a {
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .social-links a:hover {
+            color: #fff !important;
+            text-shadow: 0 0 15px rgba(255,0,255,1);
+            transform: scale(1.1);
+        }
+
+        .back-link { 
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            color: #ff66ff; 
+            text-shadow: 0 0 10px rgba(255,0,255,0.8);
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+            z-index: 100;
+            background: rgba(0,0,0,0.5);
+            padding: 10px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div><a href="index.html" class="navbar-logo">
+            <img class ="asus" src="asus2.svg">
+            Republic Of <br>Gamers
+        </a></div>
+
+        <ul class="navbar-links">
+            <li><a href="https://www.asus.com/">ᗅՏႮՏ</a></li>
+            <li><a href="1.laptop.html">Laptops</a></li>
+            <li><a href="https://rog.asus.com/phones/rog-phone-9/helpdesk/">ꜱᴜᴘᴘᴏʀᴛ</a></li>
+            <li><a href="index.html#buy" class="navbar-buy-btn">BUY</a></li>
+        </ul>
+    </nav>
+
+    <div id="roman">
+        
+
+        <div id="page1" class="page">
+            <div class="content-box hero-text">
+                <h1 class="title-evolved">EVOLVED GRAPHICS</h1>
+                <p class="subtitle">Experience Desktop-Level Visual Power</p>
+            </div>
+            <model-viewer class="hero-model"
+                src="asus_rog_geforce_rtx_4090_v2.0.glb" 
+                auto-rotate 
+                camera-controls 
+                disable-zoom
+                touch-action="pan-y"
+                interaction-prompt="none"
+                exposure="0.8" 
+                shadow-intensity="1">
+            </model-viewer>
+        </div>
+
+
+        <div id="page2" class="page">
+            <div class="content-box">
+                <h1 class="title-evolved">EVOLVED PERFORMANCE</h1>
+                <p class="subtitle">Powered by NVIDIA Ampere Architecture</p>
+                
+                <div class="performance-container">
+                    <div class="image-placeholder">
+                        <model-viewer 
+                            src="asus_rog_strix_nvidia_geforce_rtx_3080.glb" 
+                            auto-rotate 
+                            camera-controls 
+                            disable-zoom
+                            touch-action="pan-y"
+                            interaction-prompt="none"
+                            style="width: 100%; height: 100%; transform: scale(1.1);" 
+                            exposure="0.8" 
+                            shadow-intensity="1">
+                        </model-viewer>
+                    </div>
+
+                    <div class="specs-wrapper">
+                        <div class="spec-column">
+                            <span class="label">CUDA Cores</span>
+                            <span class="value">16384</span>
+                        </div>
+                        <div class="spec-column">
+                            <span class="label">Memory</span>
+                            <span class="value">24GB GDDR6X</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div id="page3" class="page">
+            <div class="content-box">
+                <h1 class="title-evolved">EVOLVED COOLING</h1>
+                <p class="subtitle">Massive Heatsinks & Axial-tech Fans</p>
+                
+                <div class="features-layout">
+                    <model-viewer class="feature-model"
+                        src="gold_graphics_card.glb" 
+                        auto-rotate 
+                        camera-controls 
+                        disable-zoom
+                        touch-action="pan-y"
+                        interaction-prompt="none"
+                        exposure="0.8" 
+                        shadow-intensity="1">
+                    </model-viewer>
+
+                    <div class="feature-list">
+                        <div class="feature-item">
+                            <div class="feature-name">Axial-Tech Upgrades</div>
+                            <div class="feature-desc">Scaled up fans propel 23% more air through the card, resulting in lower temperatures and less noise.</div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-name">Vapor Chamber</div>
+                            <div class="feature-desc">Patented milled vapor chamber with heatpipes rapidly wicks heat away from the GPU die.</div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-name">Aura Sync RGB</div>
+                            <div class="feature-desc">Front and side ARGB elements sync seamlessly with your entire ROG setup.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div id="page4" class="page">
+            <div class="content-box">
+                <h1 class="title-evolved" style="text-shadow: 0 0 20px rgba(255,0,255,0.5);">GAMING EVOLVED</h1>
+                <p class="subtitle">2026 ASUS ROG GRAPHICS CARDS</p>
+                <h2 style="color: #ff66ff; font-size: 2.2rem; margin-top: 40px; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 3px; font-family: 'Orbitron', sans-serif; text-shadow: 0 0 15px rgba(255,0,255,0.6);">Purchase Now</h2>
+                
+                <div class="shopping-grid">
+                    <a href="https://www.asus.com/in/microsite/shop-near-me/" class="shop-box" target="_blank"><img src="https://www.google.com/s2/favicons?domain=asus.com&sz=32" alt="ASUS" style="width: 24px; height: 24px; margin-right: 10px; border-radius: 4px;">ASUS Exclusive</a>
+                    <a href="https://www.amazon.in/" class="shop-box" target="_blank"><img src="https://www.google.com/s2/favicons?domain=amazon.in&sz=32" alt="Amazon" style="width: 24px; height: 24px; margin-right: 10px; border-radius: 4px;">Amazon</a>
+                    <a href="https://in.store.asus.com/" class="shop-box" target="_blank"><img src="https://www.google.com/s2/favicons?domain=asus.com&sz=32" alt="ASUS" style="width: 24px; height: 24px; margin-right: 10px; border-radius: 4px;">ASUS eShop</a>
+                    <a href="https://www.croma.com/" class="shop-box" target="_blank"><img src="https://www.google.com/s2/favicons?domain=croma.com&sz=32" alt="Croma" style="width: 24px; height: 24px; margin-right: 10px; border-radius: 4px;">Croma</a>
+                    <a href="https://www.flipkart.com/" class="shop-box" target="_blank"><img src="https://www.google.com/s2/favicons?domain=flipkart.com&sz=32" alt="Flipkart" style="width: 24px; height: 24px; margin-right: 10px; border-radius: 4px;">Flipkart</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <a href="index.html" class="back-link">← Back to Main Page</a>
+
+    <footer class="site-footer" style="padding: 40px 20px; text-align: center; background-color: #1a001a; border-top: 1px solid rgba(255, 0, 255, 0.2); width: 100%; box-sizing: border-box; position: relative; z-index: 10;">
+        <div class="footer-logo" style="font-family: 'Orbitron', sans-serif; font-size: 2rem; font-weight: bold; color: #fff; letter-spacing: 5px;"><a href="index.html" style="color: inherit; text-decoration: none;">ROG</a></div>
+        <p class="footer-slogan" style="color: #ff66ff; font-weight: bold; margin-bottom: 20px;">FOR THOSE WHO DARE</p>
+        
+        <div class="footer-links" style="margin-bottom: 20px;">
+            <a href="https://rog.asus.com/in/elite" target="_blank" style="color: #ccc; text-decoration: none; margin: 0 15px;">Privacy</a>
+            <a href="https://rog.asus.com/support/" target="_blank" style="color: #ccc; text-decoration: none; margin: 0 15px;">Support</a>
+            <a href="https://rog.asus.com/tag/media/" target="_blank" style="color: #ccc; text-decoration: none; margin: 0 15px;">Media</a>
+        </div>
+
+        <div class="social-links" style="margin: 20px 0;">
+            <a href="https://www.facebook.com/ASUSROG" target="_blank" style="margin: 0 15px; color: #ff66ff; font-size: 1.1rem; text-decoration: none; font-weight: bold;">Facebook</a>
+            <a href="https://twitter.com/ASUS_ROG" target="_blank" style="margin: 0 15px; color: #ff66ff; font-size: 1.1rem; text-decoration: none; font-weight: bold;">X </a>
+            <a href="https://www.instagram.com/asusrog" target="_blank" style="margin: 0 15px; color: #ff66ff; font-size: 1.1rem; text-decoration: none; font-weight: bold;">Instagram</a>
+            <a href="https://www.youtube.com/rog" target="_blank" style="margin: 0 15px; color: #ff66ff; font-size: 1.1rem; text-decoration: none; font-weight: bold;">YouTube</a>
+        </div>
+
+        <p class="footer-copy" style="font-size: 0.8rem; color: #666;">© 2026 ASUSTeK Computer Inc. Republic of Gamers.</p>
+    </footer>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        // ONLY applying GSAP to key features on Page 3 (Not the 3D models)
+        gsap.from('.feature-item', {
+            x: 100, 
+            opacity: 0, 
+            scale: 0.8,
+            duration: 0.8, 
+            stagger: 0.2, 
+            ease: 'back.out(1.5)',
+            scrollTrigger: { 
+                trigger: '.feature-list', 
+                start: 'top 85%', 
+                toggleActions: 'play reverse play reverse' 
+            }
+        });
+    </script>
+</body>
+</html>

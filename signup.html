@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ROG - Sign In</title>
+
+    <link rel="stylesheet" href="1.css" />
+    <link rel="stylesheet" href="signup.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+
+<a href="1.html" style="position: absolute; top: 30px; left: 30px; color: #ff0033; text-decoration: none; font-size: 18px; font-weight: bold; font-family: 'Orbitron', sans-serif; text-shadow: 0 0 10px rgba(255,0,51,0.5); z-index: 10;">← Back to Main Page</a>
+
+
+<main class="signup-page">
+    <div class="signup-container">
+        <form class="signup-form" onsubmit="event.preventDefault(); login();">
+            <h1 class="signup-title">Sign In</h1>
+            <p class="signup-subtitle">Join the Republic</p>
+
+            <div class="input-group">
+                <label for="email-address">Email Address</label>
+                <input type="email" name="email-address" id="email-address" placeholder="Enter your email" required>
+            </div>
+
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password" placeholder="Enter your password" required>
+            </div>
+
+
+
+            <p id="result" style="text-align: center; font-weight: bold; margin-bottom: 15px; min-height: 20px;"></p>
+
+            <input class="btn-submit" type="submit" value="Authenticate">
+        </form>
+    </div>
+</main>
+
+
+<footer class="site-footer" style="padding: 40px 20px; text-align: center; background-color: #06060a; border-top: 1px solid rgba(255, 0, 51, 0.2); width: 100%; box-sizing: border-box; margin-top: auto;">
+    <div class="footer-logo" style="font-family: 'Orbitron', sans-serif; font-size: 2rem; font-weight: bold; color: #fff; letter-spacing: 5px;">ROG</div>
+    <p class="footer-slogan" style="color: #ff0033; font-weight: bold; margin-bottom: 20px;">FOR THOSE WHO DARE</p>
+    
+    <div class="footer-links" style="margin-bottom: 20px;">
+        <a href="https://rog.asus.com/in/elite" target="_blank" style="color: #ccc; text-decoration: none; margin: 0 15px; transition: color 0.3s;">Privacy</a>
+        <a href="https://rog.asus.com/support/" target="_blank" style="color: #ccc; text-decoration: none; margin: 0 15px; transition: color 0.3s;">Support</a>
+        <a href="https://rog.asus.com/tag/media/" target="_blank" style="color: #ccc; text-decoration: none; margin: 0 15px; transition: color 0.3s;">Media</a>
+    </div>
+
+    <p class="footer-copy" style="font-size: 0.8rem; color: #666;">© 2026 ASUS Computer Inc. Republic of Gamers.</p>
+</footer>
+
+<script src="signup.js"></script>
+</body>
+</html>

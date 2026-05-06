@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laptop View - All Pages</title>
+    <link rel="stylesheet" href="1.css" />
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Roboto:wght@300;400;700&display=swap');
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: #000;
+            color: white;
+            font-family: 'Roboto', sans-serif;
+            overflow-x: hidden;
+        }
+
+        #roman {
+            width: 100%;
+        }
+
+        .page {
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            background: radial-gradient(circle at center, #3d107b 0%, #1a0533 100%);
+        }
+
+        #page1 {
+            background: radial-gradient(circle at center, #3d107b 0%, #1a0533 100%);
+        }
+        #page2 {
+            background: radial-gradient(circle at center, #3d107b 0%, #1a0533 100%);
+        }
+
+        .content-box {
+            text-align: center;
+            z-index: 2;
+            max-width: 1200px;
+            width: 90%;
+        }
+
+        .title-evolved {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(2rem, 5vw, 4rem);
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            margin: 0;
+            background: linear-gradient(to bottom, #ffffff, #b0b0b0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            font-size: clamp(1.2rem, 3vw, 2.2rem);
+            font-weight: 700;
+            margin: 10px 0 40px 0;
+        }
+
+        .features-grid {
+            display: flex;
+            justify-content: center;
+            gap: 100px;
+            margin-top: 50px;
+        }
+
+        .feature-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 250px;
+            padding: 20px;
+            border-radius: 12px;
+            transition: all 0.4s ease;
+            border: 1px solid transparent;
+            cursor: default;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-10px) scale(1.05);
+            background: rgba(255, 0, 51, 0.05);
+            box-shadow: 0 10px 30px rgba(41, 40, 40, 0.15);
+            border: 1px solid rgba(255, 0, 51, 0.3);
+        }
+
+        .feature-label {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            transition: color 0.4s ease, text-shadow 0.4s ease;
+        }
+
+        .feature-item:hover .feature-label {
+            color: #ff0033;
+            text-shadow: 0 0 10px rgba(255, 0, 51, 0.6);
+        }
+
+        .feature-sub {
+            font-size: 0.9rem;
+            color: #ccc;
+        }
+
+        .btn-available {
+            background: linear-gradient(90deg, #8e0e31 0%, #d11244 100%);
+            color: white;
+            padding: 15px 40px;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 1.5rem;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 30px;
+            box-shadow: 0 0 20px rgba(209, 18, 68, 0.4);
+        }
+
+        .back-link { 
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            color: #ff0033; 
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+            z-index: 100;
+            background: rgba(0,0,0,0.5);
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        .performance-container {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            width: 100%;
+            position: relative;
+            min-height: 500px;
+        }
+
+        .image-placeholder {
+            position: absolute;
+            left: -10%;
+            width: 60%;
+            height: 100%;
+        }
+
+        .specs-wrapper {
+            display: flex;
+            gap: 50px;
+            z-index: 2;
+            margin-right: 5%;
+        }
+
+        .spec-column {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .brand-logo {
+            width: 100px;
+            height: 120px;
+            padding: 15px;
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .intel { background: linear-gradient(135deg, #00378b 0%, #001e4a 100%); }
+        .amd { background: #000; border: 2px solid #fff; }
+
+        .spec-text .label {
+            display: block;
+            font-size: 1.1rem;
+            color: #eee;
+        }
+
+        .spec-text .value {
+            display: block;
+            font-size: 1.4rem;
+            font-weight: bold;
+            margin-top: 5px;
+        }
+
+        .footer-links a:hover {
+            color: #fff !important;
+            text-shadow: 0 0 10px rgba(255,255,255,0.8);
+        }
+
+        .social-links a {
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .social-links a:hover {
+            color: #fff !important;
+            text-shadow: 0 0 15px rgba(255,0,51,1);
+            transform: scale(1.1);
+        }
+
+        .shopping-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .shop-box {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 0, 51, 0.3);
+            border-radius: 8px;
+            padding: 15px 25px;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            flex: 1 1 calc(25% - 15px);
+            min-width: 140px;
+            text-align: center;
+        }
+
+        .shop-box:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 0, 51, 0.2);
+            box-shadow: 0 5px 15px rgba(255, 0, 51, 0.4);
+            border-color: #ff0033;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div><a href="index.html" class="navbar-logo">
+            <img class ="asus" src="asus2.svg">   </img>
+            Republic Of <br>Gamers
+        </a></div>
+
+        <ul class="navbar-links">
+            <li><a href="https://www.asus.com/">ᗅՏႮՏ</a></li>
+            <li><a href="https://rog.asus.com/phones/rog-phone-9/">ＲＯＧ 9 ༒</a></li>
+            <li><a href="https://rog.asus.com/phones/rog-phone-9/helpdesk/">ꜱᴜᴘᴘᴏʀᴛ</a></li>
+            <li><a href="https://account.asus.com/in/signup.aspx">Sign Up</a></li>
+            <li><a href="#buy" class="navbar-buy-btn">BUY</a></li>
+        </ul>
+    </nav>
+
+    <div id="roman">
+        <div id="page1" class="page">
+            <div class="content-box" style="position: absolute; top: 35%; left: 8%; z-index: 2; text-align: left; pointer-events: none; width: 45%;">
+                <h1 class="title-evolved" style="background: linear-gradient(135deg, #ff0033, #ff4d79); -webkit-background-clip: text; -webkit-text-fill-color: transparent; filter: drop-shadow(0 0 15px rgba(255,0,51,0.9)) drop-shadow(0 0 30px rgba(255,0,51,0.6)); font-size: clamp(3rem, 6vw, 5rem);">EVOLVED GRAPHICS</h1>
+                <p class="subtitle">Experience Desktop-Level Visual Power</p>
+            </div>
+            <model-viewer 
+                src="asus_rog_strix_scar_17_2023_g733_gaming_laptop.glb" 
+                auto-rotate 
+                camera-controls 
+                disable-zoom
+                touch-action="pan-y"
+                interaction-prompt="none"
+                style="width: 55%; height: 100%; position: absolute; top:0; right:0; z-index: 1;" 
+                exposure="1" 
+                shadow-intensity="1">
+            </model-viewer>
+        </div>
+
+        
+
+
+
+        
+        <div id="page2" class="page">
+    <div class="content-box">
+        <h1 class="title-evolved">EVOLVED PERFORMANCE</h1>
+        <p class="subtitle">Latest Intel&reg; Core&trade; & AMD Ryzen&trade; Processors</p>
+        
+        <div class="performance-container">
+            <div class="image-placeholder">
+                <model-viewer 
+                    src="rog_zephyrus_duo_15.glb" 
+                    auto-rotate 
+                    camera-controls 
+                    disable-zoom
+                    touch-action="pan-y"
+                    interaction-prompt="none"
+                    style="width: 100%; height: 100%; transform: scale(1.3) translate(20px, 0px);" 
+                    exposure="1" 
+                    shadow-intensity="1">
+                </model-viewer>
+            </div>
+
+            <div class="specs-wrapper">
+                <div class="spec-column">
+                    <img src="intel.png" alt="Intel Core" style="width: 100px; height: auto; margin-bottom: 20px;">
+                    <div class="spec-text">
+                        <span class="label">Up to Intel&reg; Core&trade;</span>
+                        <span class="value">Ultra 9 Processor</span>
+                    </div>
+                </div>
+
+                <div class="spec-column">
+                    <img src="amd.png" alt="AMD Ryzen" style="width: 100px; height: auto; margin-bottom: 20px;">
+                    <div class="spec-text">
+                        <span class="label">Up to AMD Ryzen&trade;</span>
+                        <span class="value">AI 300 Series</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+        <div id="page3" class="page">
+            <div class="content-box">
+                <h1 class="title-evolved">EVOLVED FEATURES</h1>
+                <p class="subtitle">For Seamless Gaming Experience</p>
+                
+                <div class="features-grid">
+                    <div class="feature-item">
+                        <span class="feature-label">ROG NEBULA HDR&trade;</span>
+                        <span class="feature-sub">Higher Refresh Rate, Response Time & Color Accuracy</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-label">ROG INTELLIGENT COOLING&trade;</span>
+                        <span class="feature-sub">Vapor Chambers, Arc Flow Fans, Tri Fan technology & More</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="page4" class="page">
+            <div class="content-box">
+                <h1 class="title-evolved" style="text-shadow: 0 0 20px rgba(255,0,0,0.5);">GAMING EVOLVED</h1>
+                <p class="subtitle">2025 ASUS ROG GAMING LAPTOPS</p>
+                <h2 style="color: #ff0033; font-size: 2.2rem; margin-top: 40px; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 3px; font-family: 'Orbitron', sans-serif; text-shadow: 0 0 15px rgba(255,0,51,0.6);">Purchase Now</h2>
+                <div class="shopping-grid">
+                    <a href="https://www.asus.com/in/microsite/shop-near-me/" class="shop-box" target="_blank"><img src="https://www.google.com/s2/favicons?domain=asus.com&sz=32" alt="ASUS" style="width: 24px; height: 24px; margin-right: 10px; border-radius: 4px;">ASUS Exclusive Store</a>
+                    <a href="https://www.amazon.in/s?hidden-keywords=B0F5BG2YGV+%7C+B0F5BH7D1L+%7C+B0F5BG82KM+%7C+B0F5BFTTN5+%7C+B0F5BFQR4T+%7C+B0F66WZZ2T+%7C+B0F66VZTBM+%7C+B0F9X949BL+%7C+B0F9X945VW+%7C+B0F9X7PGNW+%7C+B0CQ2VRMS5+%7C+B0F9X5DSBS+%7C+B0F9X6J9TX+%7C+B0DQD9JR98+%7C+B0FB9F4LGG+%7C+B0FB9G9XVG&crid=30CZF9REFL779&sprefix=b0f5bg2ygv+b0f5bh7d1l+b0f5bg82km+b0f5bfttn5+b0f5bfqr4t+b0f66wzz2t+b0f66vztbm+b0f9x949bl+b0f9x945vw+b0f9x7pgnw+b0cq2vrms5+b0f9x5dsbs+b0f9x6j9tx+b0dqd9jr98+%2Caps%2C247&ref=nb_sb_noss" class="shop-box" target="_blank"><img src="https://www.google.com/s2/favicons?domain=amazon.in&sz=32" alt="Amazon" style="width: 24px; height: 24px; margin-right: 10px; border-radius: 4px;">Amazon</a>
+                    <a href="https://www.asus.com/in/microsite/shop-by-laptop-price-and-specs/?page_link=nvidia-rtx-5000-series" class="shop-box" target="_blank"><img src="https://www.google.com/s2/favicons?domain=asus.com&sz=32" alt="ASUS" style="width: 24px; height: 24px; margin-right: 10px; border-radius: 4px;">ASUS eShop</a>
+                    <a href="https://www.croma.com/campaign/asus-rog-new-launch/c/6966" class="shop-box" target="_blank"><img src="https://www.google.com/s2/favicons?domain=croma.com&sz=32" alt="Croma" style="width: 24px; height: 24px; margin-right: 10px; border-radius: 4px;">Croma</a>
+                    <a href="https://www.flipkart.com/6bo/b5g/~cs-s43ibj50ou/pr?sid=6bo,b5g&collection-tab-name=ASUS+RTX+50-Series+&pageCriteria=default" class="shop-box" target="_blank"><img src="https://www.google.com/s2/favicons?domain=flipkart.com&sz=32" alt="Flipkart" style="width: 24px; height: 24px; margin-right: 10px; border-radius: 4px;">Flipkart</a>
+                    <a href="https://www.reliancedigital.in/collection/asus-rog16-laptops/?internal_source=lp&internal_medium=hpmc&internal_campaign=bts&page_no=1&page_size=12&page_type=number" class="shop-box" target="_blank"><img src="https://www.google.com/s2/favicons?domain=reliancedigital.in&sz=32" alt="Reliance" style="width: 24px; height: 24px; margin-right: 10px; border-radius: 4px;">Reliance Digital</a>
+                    <a href="https://www.vijaysales.com/sale/laptop-buckets/asus-rog-laptops" class="shop-box" target="_blank"><img src="https://www.google.com/s2/favicons?domain=vijaysales.com&sz=32" alt="Vijay Sales" style="width: 24px; height: 24px; margin-right: 10px; border-radius: 4px;">Vijay Sales</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <a href="index.html" class="back-link">← Back to Main Page</a>
+
+    <footer class="site-footer" style="padding: 40px 20px; text-align: center; background-color: #06060a; border-top: 1px solid rgba(255, 0, 51, 0.2); width: 100%; box-sizing: border-box;">
+        <div class="footer-logo" style="font-family: 'Orbitron', sans-serif; font-size: 2rem; font-weight: bold; color: #fff; letter-spacing: 5px;"><a href="index.html" style="color: inherit; text-decoration: none;">ROG</a></div>
+        <p class="footer-slogan" style="color: #ff0033; font-weight: bold; margin-bottom: 20px;">FOR THOSE WHO DARE</p>
+        
+        <div class="footer-links" style="margin-bottom: 20px;">
+            <a href="https://rog.asus.com/in/elite" target="_blank" style="color: #ccc; text-decoration: none; margin: 0 15px;">Privacy</a>
+            <a href="https://rog.asus.com/support/" target="_blank" style="color: #ccc; text-decoration: none; margin: 0 15px;">Support</a>
+            <a href="https://rog.asus.com/tag/media/" target="_blank" style="color: #ccc; text-decoration: none; margin: 0 15px;">Media</a>
+        </div>
+
+        <div class="social-links" style="margin: 20px 0;">
+            <a href="https://www.facebook.com/ASUSROG" target="_blank" style="margin: 0 15px; color: #ff0033; font-size: 1.1rem; text-decoration: none; font-weight: bold;">Facebook</a>
+            <a href="https://twitter.com/ASUS_ROG" target="_blank" style="margin: 0 15px; color: #ff0033; font-size: 1.1rem; text-decoration: none; font-weight: bold;">X </a>
+            <a href="https://www.instagram.com/asusrog" target="_blank" style="margin: 0 15px; color: #ff0033; font-size: 1.1rem; text-decoration: none; font-weight: bold;">Instagram</a>
+            <a href="https://www.youtube.com/rog" target="_blank" style="margin: 0 15px; color: #ff0033; font-size: 1.1rem; text-decoration: none; font-weight: bold;">YouTube</a>
+        </div>
+
+        <p class="footer-copy" style="font-size: 0.8rem; color: #666;">© 2026 ASUSTeK Computer Inc. Republic of Gamers.</p>
+    </footer>
+
+</body>
+</html>

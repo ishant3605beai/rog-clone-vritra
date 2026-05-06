@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>ROG Phone 9</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="1.css" />
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+</head>
+
+<body>
+
+
+    <nav class="navbar">
+
+        <div><a href="index.html" class="navbar-logo">
+                <img class="asus" src="asus2.svg"> </img>
+                Republic Of <br>Gamers
+            </a></div>
+
+
+
+        <ul class="navbar-links">
+            <li><a href="https://www.asus.com/">ᗅՏႮՏ</a></li>
+            <li><a href="https://rog.asus.com/phones/rog-phone-9/">ＲＯＧ ༒</a></li>
+            <li><a href="https://rog.asus.com/phones/rog-phone-9/helpdesk/">ꜱᴜᴘᴘᴏʀᴛ</a></li>
+            <li style="position: relative;" id="nav-user-container">
+                <a href="signup.html" id="nav-user-link">Log In</a>
+                <div id="user-dropdown"
+                    style="display: none; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); background: rgba(10, 10, 15, 0.95); border: 1px solid rgba(255, 0, 51, 0.4); border-radius: 8px; box-shadow: 0 5px 15px rgba(255, 0, 51, 0.5); padding: 10px 0; min-width: 150px; z-index: 100; flex-direction: column;">
+                    <a href="signup.html" id="switch-user-btn"
+                        style="color: white; padding: 10px 20px; text-decoration: none; font-size: 0.9rem; text-align: center; display: block; border-bottom: 1px solid rgba(255,255,255,0.1);">Switch
+                        User</a>
+                    <a href="#" id="logout-btn"
+                        style="color: #ff0033; padding: 10px 20px; text-decoration: none; font-size: 0.9rem; text-align: center; display: block;">Log
+                        Out</a>
+                </div>
+            </li>
+
+
+            <li><a href="#buy" class="navbar-buy-btn">BUY</a></li>
+        </ul>
+
+    </nav>
+
+
+
+
+
+
+
+    <section class="hero" id="hero">
+
+
+        <div class="hero-grid"></div>
+
+
+        <div class="hero-text">
+            <span class="small-label">Celebrating 20 years of gaming legacy</span>
+
+            <h1 class="hero-heading">
+                <span class="heading-rog">ROG</span><br>
+                <span class="heading-rest"><em>Join The Republic Of Gamers</em></span>
+            </h1>
+
+            <p class="hero-slogan">DOMINATE. EVERYWHERE.</p>
+            <p class="hero-specs-line">The Art Of Rog Universe</p>
+
+            <div class="hero-buttons">
+                <a href="#buy" class="btn-red">ORDER NOW →</a>
+                <a href="#specs" class="btn-outline">EXPLORE</a>
+            </div>
+        </div>
+
+
+        <div class="gif"><a href="https://rog.asus.com/">
+                <img src="rog.gif" alt="rog animation">
+            </a>
+        </div>
+
+
+
+    </section>
+
+    <section class="video-section" id="video-slider">
+        <div class="video-slider">
+            <div class="video-slides">
+                <div class="video-slide active">
+                    <video autoplay muted loop playsinline>
+                        <source src="video.mp4" type="video/mp4">
+                    </video>
+                    <div class="slide-caption">ROG Universe</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="specs-section" id="specs">
+
+
+        <div class="section-heading">
+            <span class="small-label">UNDER THE HOOD</span>
+            <h2>APEX SPECS</h2>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+        <section class="image-section">
+
+            <div class="grid-3x3">
+                <div class="grid-item">
+                    <model-viewer class="grid-model" src="asus_rog_strix_scar_17_2023_g733_gaming_laptop.glb" auto-rotate camera-controls
+                        touch-action="pan-y" shadow-intensity="1" exposure="0.7"
+                        interaction-prompt="none"></model-viewer>
+                    <span class="grid-label">Laptop</span>
+                    <a href="1.laptop.html" class="grid-link">View →</a>
+                </div>
+                <div class="grid-item">
+                    <model-viewer class="grid-model" src="motherboard3.glb" auto-rotate camera-controls
+                        touch-action="pan-y" shadow-intensity="1" exposure="0.7"
+                        interaction-prompt="none"></model-viewer>
+                    <span class="grid-label">Motherboard</span>
+                    <a href="1.Motherboard.html" class="grid-link">View →</a>
+                </div>
+                <div class="grid-item">
+                    <model-viewer class="grid-model" src="asus_rog_geforce_rtx_4090_v2.0.glb" auto-rotate camera-controls
+                        touch-action="pan-y" shadow-intensity="1" exposure="0.7"
+                        interaction-prompt="none"></model-viewer>
+                    <span class="grid-label">Graphics Card</span>
+                    <a href="1.c.html" class="grid-link">View →</a>
+                </div>
+                <div class="grid-item">
+                    <img src="phone2.png" alt="ROG Phone" class="grid-item-img">
+                    <span class="grid-label">Phones</span>
+                    <a href="1.e.html" class="grid-link">View →</a>
+                </div>
+            </div>
+
+        </section>
+
+        <section class="features-section" id="features">
+
+            <div class="section-heading">
+                <span class="small-label">BUILT FOR BATTLE</span>
+                <h2>KEY <span class="text-red">FEATURES</span></h2>
+            </div>
+
+
+            <div class="feature-list feature-grid-full">
+
+                <div class="feature-item">
+                    <span class="feature-number">01</span>
+                    <span class="feature-icon">🖥️</span>
+                    <div class="feature-info">
+                        <div class="feature-name">ROG Nebula Display</div>
+                        <div class="feature-desc">Unmatched color accuracy, peak brightness, and blistering refresh rates.</div>
+                    </div>
+                </div>
+
+                <div class="feature-item">
+                    <span class="feature-number">02</span>
+                    <span class="feature-icon">❄️</span>
+                    <div class="feature-info">
+                        <div class="feature-name">Intelligent Cooling</div>
+                        <div class="feature-desc">Vapor chambers, liquid metal, and Arc Flow fans keep temperatures at absolute zero.</div>
+                    </div>
+                </div>
+
+                <div class="feature-item">
+                    <span class="feature-number">03</span>
+                    <span class="feature-icon">💡</span>
+                    <div class="feature-info">
+                        <div class="feature-name">Aura Sync RGB</div>
+                        <div class="feature-desc">Unify your gaming setup with 16.8M colors synced across all your ROG devices.</div>
+                    </div>
+                </div>
+
+                <div class="feature-item">
+                    <span class="feature-number">04</span>
+                    <span class="feature-icon">⚙️</span>
+                    <div class="feature-info">
+                        <div class="feature-name">Armoury Crate</div>
+                        <div class="feature-desc">Total command over performance profiles, macro keys, and system diagnostics.</div>
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+        <section class="buy-section" id="buy">
+
+            <span class="small-label">The Art Of Rog Universe</span>
+            <h2 class="buy-heading">CLAIM YOUR <span class="text-red">THRONE</span></h2>
+
+            <div style="display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; margin-top: 30px; max-width: 1000px; margin-left: auto; margin-right: auto; padding-bottom: 20px;">
+                <a href="https://www.amazon.in/stores/ASUS/page/C533D5C5-32AD-4A36-80D1-BB9FF0A4ECDF" target="_blank" class="btn-red">AMAZON <span>→</span></a>
+                <a href="https://www.flipkart.com/gaming/asus~brand/pr?sid=4rr" target="_blank" class="btn-red">FLIPKART <span>→</span></a>
+                <a href="https://www.vijaysales.com/sale/laptop-buckets/asus-rog-laptops" target="_blank" class="btn-red">VIJAY SALES <span>→</span></a>
+                <a href="https://www.croma.com/campaign/asus-rog-new-launch/c/6966" target="_blank" class="btn-red">CROMA <span>→</span></a>
+                <a href="https://www.asus.com/in/store/" target="_blank" class="btn-red">ASUS STORE <span>→</span></a>
+            </div>
+
+        </section>
+
+        <footer class="site-footer">
+
+            <div class="footer-logo"><a href="index.html" style="color: inherit; text-decoration: none;">ROG</a></div>
+            <p class="footer-slogan">FOR THOSE WHO DARE</p>
+
+            <div class="footer-links">
+                <a href="https://rog.asus.com/in/elite">Privacy</a>
+                <a href="https://rog.asus.com/support/">Support</a>
+                <a href="https://rog.asus.com/tag/media/">Media</a>
+            </div>
+
+            <div class="social-links" style="margin: 20px 0;">
+                <a href="https://www.facebook.com/ASUSROG" target="_blank" style="margin: 0 15px; color: #ff0033; font-size: 1.1rem; text-decoration: none; font-weight: bold;">Facebook</a>
+                <a href="https://twitter.com/ASUS_ROG" target="_blank" style="margin: 0 15px; color: #ff0033; font-size: 1.1rem; text-decoration: none; font-weight: bold;">X </a>
+                <a href="https://www.instagram.com/asusrog" target="_blank" style="margin: 0 15px; color: #ff0033; font-size: 1.1rem; text-decoration: none; font-weight: bold;">Instagram</a>
+                <a href="https://www.youtube.com/rog" target="_blank" style="margin: 0 15px; color: #ff0033; font-size: 1.1rem; text-decoration: none; font-weight: bold;">YouTube</a>
+            </div>
+
+            <p class="footer-copy">© 2025 ASUSTeK Computer Inc. Republic of Gamers.</p>
+
+        </footer>
+
+        <script src="1.js"></script>
+</body>
+
+</html>
